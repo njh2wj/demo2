@@ -1,0 +1,23 @@
+div{
+  margin-top: 4em;
+  font-size: 1.2em;
+}
+table{
+
+  margin:0 auto;
+}
+button{
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s;
+  margin-top: 5em;
+  width: 12em;
+  height: 4em;
+
+}
+button:hover{
+  background-color: #336699;
+  color: white;
+}

@@ -1,0 +1,29 @@
+<div>
+  <form action="#">
+    <table>
+      <tr>
+        <td>姓名：</td>
+        <td>{{person.uname}}</td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td *ngIf="person.usex===1">男</td>
+        <td *ngIf="person.usex===2">女</td>
+      </tr>
+      <tr>
+        <td>年龄：</td>
+        <td>{{person.uage}}</td>
+      </tr>
+      <tr>
+        <td>电话：</td>
+        <td>{{person.utel}}</td>
+      </tr>
+      <tr>
+        <td>家庭住址：</td>
+        <td>{{person.uaddress}}</td>
+      </tr>
+    </table>
+    <button type="button"(click)="_update(true)">编辑</button>
+  </form>
+</div>
+

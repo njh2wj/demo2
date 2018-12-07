@@ -1,0 +1,33 @@
+<div>
+  <form>
+    <table>
+      <tr>
+        <td>姓名：</td>
+        <td>
+          <input type="text" id="uname" [(ngModel)]="person.uname" name="uname" placeholder="请输入姓名"required="required">
+        </td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td>
+          男<input type="radio" name="usex"  value="1" (change)="usexChange($event)"checked>
+          女<input type="radio" name="usex"  value="2" (change)="usexChange($event)">
+
+      </tr>
+      <tr>
+        <td>年龄：</td>
+        <td><input type="number" id="uage" [(ngModel)]="person.uage" name="uage" placeholder="请输入年龄"required="required"></td>
+      </tr>
+      <tr>
+        <td>电话：</td>
+        <td><input type="tel" id="utel" [(ngModel)]="person.utel" name="utel" placeholder="请输入电话"required="required"></td>
+      </tr>
+      <tr>
+        <td>家庭住址：</td>
+        <td><input type="text" id="uaddress" [(ngModel)]="person.uaddress" name="uaddress" placeholder="请输入家庭住址"required="required"></td>
+      </tr>
+    </table>
+    <button type="button" (click)="save(true)">保存</button>
+
+  </form>
+</div>

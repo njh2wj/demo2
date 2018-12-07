@@ -1,0 +1,9 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <app-informationform *ngIf="isEdit" (send)="isEdit=$event" [person]="personDetail"></app-informationform>
+  <app-persondetail *ngIf="!isEdit" (bb)="onbb($event)"></app-persondetail>
+</div>
+
