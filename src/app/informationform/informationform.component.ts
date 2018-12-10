@@ -51,8 +51,18 @@ export class InformationformComponent implements OnInit {
 
   cancel(){
     const person = JSON.parse(localStorage.getItem('personEntity'));
-    if(!(person===this.person)) {
+    if(!(person.uname===this.person.uname)) {
       alert("信息已更改，未保存！");
+    }else if(!(person.usex===this.person.usex)) {
+      alert("信息已更改，未保存！");
+    }else if(!(person.uage===this.person.uage)) {
+      alert("信息已更改，未保存！");
+    }else if(!(person.utel===this.person.utel)) {
+      alert("信息已更改，未保存！");
+    }else if(!(person.uaddress===this.person.uaddress)) {
+      alert("信息已更改，未保存！");
+    }else{
+      alert("信息未更改！");
     }
     this.unsave(false);
   }
