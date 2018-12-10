@@ -1,10 +1,25 @@
 <div>
-  <form>
+  <form #informationForm="ngForm">
     <table>
       <tr>
         <td>姓名：</td>
         <td>
-          <input type="text" id="uname" [(ngModel)]="person.uname" name="uname" placeholder="请输入姓名"required="required">
+          <input type="text" id="uname" [(ngModel)]="person.uname" name="uname" placeholder="请输入姓名"#pername="ngModel"
+          required minlength="2" class="form-control" (blur)="unameVal($event)"pattern="^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$">
+        </td>
+        <td>
+           <div *ngIf="pername.invalid && (pername.dirty || pername.touched)"
+                 class="alert alert-danger">
+            <div *ngIf="pername.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="pername.errors.minlength">
+              Name must be at least 2 characters long.
+            </div>
+            <div *ngIf="pername.errors.pattern">
+              Name is not formatted correctly.
+            </div>
+          </div>
         </td>
       </tr>
       <tr>
@@ -12,22 +27,72 @@
         <td>
           男<input type="radio" name="usex"  value="1" (change)="usexChange($event)"checked>
           女<input type="radio" name="usex"  value="2" (change)="usexChange($event)">
-
       </tr>
       <tr>
         <td>年龄：</td>
-        <td><input type="number" id="uage" [(ngModel)]="person.uage" name="uage" placeholder="请输入年龄"required="required"></td>
+        <td>
+          <input type="number" id="uage" [(ngModel)]="person.uage" name="uage" placeholder="请输入年龄" #perage="ngModel"
+          required minlength="1" maxlength="3" class="form-control" (blur)="ageVal($event)" pattern="^(?:[1-9][0-9]?|1[01][0-9]|120)$">
+        </td>
+        <td>
+          <div *ngIf="perage.invalid && (perage.dirty || perage.touched)"
+               class="alert alert-danger">
+            <div *ngIf="perage.errors.required">
+              Age is required.
+            </div>
+            <div *ngIf="perage.errors.minlength">
+              Age must be at least 1 characters long.
+            </div>
+            <div *ngIf="perage.errors.maxlength">
+              Age must be at most 3 characters long.
+            </div>
+            <div *ngIf="perage.errors.pattern">
+              Age is not formatted correctly.
+            </div>
+          </div>
+        </td>
       </tr>
       <tr>
         <td>电话：</td>
-        <td><input type="tel" id="utel" [(ngModel)]="person.utel" name="utel" placeholder="请输入电话"required="required"></td>
+        <td><input type="number" id="utel" [(ngModel)]="person.utel" name="utel" placeholder="请输入电话:188........" #pertel="ngModel"
+             required minlength="11" maxlength="11"class="form-control" pattern="^1[34578]\d{9}$">
+        </td>
+        <td>
+          <div *ngIf="pertel.invalid && (pertel.dirty || pertel.touched)"
+               class="alert alert-danger">
+            <div *ngIf="pertel.errors.required">
+              Tel is required.
+            </div>
+            <div *ngIf="pertel.errors.minlength">
+              Tel must be  11 characters long.
+            </div>
+            <div *ngIf="pertel.errors.maxlength">
+              Tel must be  11 characters long.
+            </div>
+            <div *ngIf="pertel.errors.pattern">
+              The tel is not formatted correctly.
+            </div>
+          </div>
+        </td>
       </tr>
       <tr>
         <td>家庭住址：</td>
-        <td><input type="text" id="uaddress" [(ngModel)]="person.uaddress" name="uaddress" placeholder="请输入家庭住址"required="required"></td>
+        <td><input type="text" id="uaddress" [(ngModel)]="person.uaddress" name="uaddress" placeholder="请输入家庭住址:沈阳市...." #peraddress="ngModel"
+             required class="form-control">
+        </td>
+        <td>
+          <div *ngIf="perage.invalid && (perage.dirty || perage.touched)"
+               class="alert alert-danger">
+            <div *ngIf="perage.errors.required">
+              Address is required.
+            </div>
+          </div>
+        </td>
       </tr>
     </table>
-    <button type="button" (click)="save(true)">保存</button>
-
+    <button type="button" (click)="save(true)"class="btn btn-success" [disabled]="!informationForm.form.valid">保存</button>
+    <button type="button" *ngIf="!isEdit" (click)="cancel()">取消</button>
   </form>
 </div>
+
+
