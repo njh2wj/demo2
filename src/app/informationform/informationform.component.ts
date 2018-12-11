@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Person} from '../person'
-import {Output, EventEmitter} from "@angular/core";
-import {isNullOrUndefined} from "util";
+import {Person} from '../person';
+import {Output, EventEmitter} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-informationform',
@@ -11,74 +11,66 @@ import {isNullOrUndefined} from "util";
 
 export class InformationformComponent implements OnInit {
 
-  @Input() public person: Person = new Person();
+  // @Input() public person: Person = new Person();
+  // @Input() public isCreate = true;
+  public person: Person = new Person();
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(value => {
+      if (value) {
+        this.person.uname = value['uname'];
+        this.person.usex = value['usex'];
+        this.person.uage = value['uage'];
+        this.person.uaddress = value['uaddress'];
+        this.person.utel = value['utel'];
+      }
+    });
   }
-
-  @Output() send = new EventEmitter<boolean>();
 
   ngOnInit() {
-    const person = localStorage.getItem('personEntity');
-    if (person) {
-      this.person = JSON.parse(person);
-    }
-    this.person.usex = 1;
   }
 
-  usexChange(event){
-    var value = event.target.value;
-    this.person.usex = Number(value);
+  private usexChange(event) {
+    const value = event.target.value;
+    // this.person.usex = Number(value);
   }
-  unameVal(event){
-    var value=event.target.value;
-    const reg= /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$/;
-    if(reg.test(value)){
+
+  private unameVal(event) {
+    const value = event.target.value;
+    const reg = /^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$/;
+    if (reg.test(value)) {
       return true;
-    }else{
-      return false;
-    }
-  }
-  ageVal(event){
-    var value=event.target.value;
-    const reg= /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
-    if(reg.test(value)){
-      return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  cancel(){
+  private ageVal(event) {
+    const value = event.target.value;
+    const reg = /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
+    if (reg.test(value)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private cancel() {
     const person = JSON.parse(localStorage.getItem('personEntity'));
-    if(!(person.uname===this.person.uname)) {
-      alert("信息已更改，未保存！");
-    }else if(!(person.usex===this.person.usex)) {
-      alert("信息已更改，未保存！");
-    }else if(!(person.uage===this.person.uage)) {
-      alert("信息已更改，未保存！");
-    }else if(!(person.utel===this.person.utel)) {
-      alert("信息已更改，未保存！");
-    }else if(!(person.uaddress===this.person.uaddress)) {
-      alert("信息已更改，未保存！");
-    }else{
-      alert("信息未更改！");
+    if (!(person.uname === this.person.uname) || !(person.usex === this.person.usex) || !(person.uage === this.person.uage) || !(person.utel === this.person.utel) || !(person.uaddress === this.person.uaddress)) {
+      alert('信息已更改，未保存！');
+    } else {
+      alert('信息未更改！');
     }
     this.unsave(false);
   }
 
-  public unsave(val){
-    this.send.emit(val);
-   }
+  private unsave(val) {
+    // this.send.emit(val);
+  }
 
   public save(a: boolean) {
-    if (!isNullOrUndefined(this.person.uname) && !isNullOrUndefined(this.person.uage) && !isNullOrUndefined(this.person.usex) && !isNullOrUndefined(this.person.utel) && !isNullOrUndefined(this.person.uaddress)) {
-      localStorage.setItem('personEntity', JSON.stringify(this.person));
-      this.send.emit(!a);
-    }
-    else {
-      alert("请补全信息！");
-      return;
-    }
+    localStorage.setItem('personEntity', JSON.stringify(this.person));
+    this.router.navigate(['/persondetail'], {queryParams: {'person': JSON.stringify(this.person)}});
   }
 }
