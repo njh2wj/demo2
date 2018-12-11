@@ -1,5 +1,4 @@
 table{
-
   margin:0 auto;
 }
 button{
@@ -11,4 +10,13 @@ button{
   margin-top: 5em;
   width: 12em;
   height: 4em;
+  margin-left:17em;
+}
+button:hover{
+  background-color: #336699;
+  color: white;
+}
+form{
+  width: 60em;
+  margin:10em auto;
 }
