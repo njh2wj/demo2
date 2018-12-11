@@ -23,7 +23,13 @@
         <td>{{person.uaddress}}</td>
       </tr>
     </table>
-    <button type="button"(click)="_update(true)">编辑</button>
+    <a routerLinkActive="active">
+      <button type="button"(click)="_update(true)">编辑</button>
+    </a>
+    <a routerLink="/informationform" routerLinkActive="active">
+      <button type="button" *ngIf="!isEdit" (click)="newPerson()">新建</button>
+    </a>
   </form>
 </div>
+
 
