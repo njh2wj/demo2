@@ -1,5 +1,6 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
-import {Person} from "../person";
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Person} from '../person';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-persondetail',
@@ -10,15 +11,36 @@ export class PersondetailComponent implements OnInit {
 
   person: Person = new Person();
 
-  constructor() { }
- @Output() bb=new EventEmitter();
-  ngOnInit() {
-    const  newPerson = localStorage.getItem('personEntity');
-    const  user = JSON.parse(newPerson);
-    this.person=user;
+  constructor(private router: Router) {
   }
-   public _update(){
-    this.bb.emit(this.person);
-    console.log(this.person);
-   }
+
+  // @Output() bb = new EventEmitter();
+  ngOnInit() {
+    const newPerson = localStorage.getItem('personEntity');
+    console.log(newPerson)
+    if (!newPerson) {
+      this.router.navigate(['informationform']);
+    }
+    const user = JSON.parse(newPerson);
+    this.person = user;
+  }
+
+  public newPerson() {
+    this.person = new Person();
+    // this.bb.emit({
+    //   person: this.person,
+    //   isCreate: true
+    // });
+  }
+
+  public _update() {
+    this.router.navigate(['/informationform'], {
+      queryParams: this.person
+    });
+    // this.bb.emit({
+    //   person: this.person,
+    //   isCreate: false
+    // });
+  }
+
 }
