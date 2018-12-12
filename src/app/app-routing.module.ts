@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { InforDetailComponent } from './infor-detail/infor-detail.component';
-import { IndexComponent } from './index/index.component';
-import { PersondetailComponent } from './persondetail/persondetail.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {IndexComponent} from './index/index.component';
+import {PersondetailComponent} from './persondetail/persondetail.component';
 import {InformationformComponent} from './informationform/informationform.component';
+import {RouterGuardService} from './router-guard.service';
 
-// const routes: Routes = [];
 const appRoutes: Routes = <Routes>[
   {
     path: '',
@@ -14,19 +13,22 @@ const appRoutes: Routes = <Routes>[
   },
   {
     path: 'persondetail',
-    component: PersondetailComponent
+    component: PersondetailComponent,
   },
   {
     path: 'index',
-    component: IndexComponent
+    component: IndexComponent,
   },
   {
     path: 'informationform',
-    component: InformationformComponent
+    component: InformationformComponent,
+    canDeactivate: [RouterGuardService]
   },
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
