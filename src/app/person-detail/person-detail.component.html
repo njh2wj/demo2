@@ -24,10 +24,10 @@
       </tr>
     </table>
     <a routerLinkActive="active">
-      <button type="button"(click)="_update(true)">编辑</button>
+      <button type="button"(click)="onDataUpdate(true)">编辑</button>
     </a>
-    <a routerLink="/informationform" routerLinkActive="active">
-      <button type="button" *ngIf="!isEdit" (click)="newPerson()">新建</button>
+    <a routerLink="/information-form" routerLinkActive="active">
+      <button type="button" *ngIf="!isEdit" (click)="onNewPersonBtnClick()">新建</button>
     </a>
   </form>
 </div>

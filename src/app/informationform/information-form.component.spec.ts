@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InformationformComponent } from './informationform.component';
+import { InformationformComponent } from './information-form.component';
 
 describe('InformationformComponent', () => {
   let component: InformationformComponent;

@@ -4,10 +4,10 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-persondetail',
-  templateUrl: './persondetail.component.html',
-  styleUrls: ['./persondetail.component.css']
+  templateUrl: './person-detail.component.html',
+  styleUrls: ['./person-detail.component.css']
 })
-export class PersondetailComponent implements OnInit {
+export class PersonDetailComponent implements OnInit {
 
   person: Person = new Person();
 
@@ -17,20 +17,19 @@ export class PersondetailComponent implements OnInit {
     const newPerson = localStorage.getItem('personEntity');
     console.log(newPerson)
     if (!newPerson) {
-      this.router.navigate(['informationform']);
+      this.router.navigate(['information-form']);
     }
     const user = JSON.parse(newPerson);
     this.person = user;
   }
 
-  public newPerson() {
+  public onNewPersonBtnClick() {
     this.person = new Person();
   }
 
-  public _update() {
-    this.router.navigate(['/informationform'], {
+  public onDataUpdate() {
+    this.router.navigate(['information-form'], {
       queryParams: this.person
     });
   }
-
 }

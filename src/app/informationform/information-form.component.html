@@ -93,8 +93,8 @@
     <a routerLinkActive="active">
       <button type="button" (click)="save(true)"class="btn btn-success" [disabled]="!informationForm.form.valid">保存</button>
     </a>
-    <a routerLink="/persondetail" routerLinkActive="active">
-      <button type="button" *ngIf="!isEdit" (click)="cancel()">取消</button>
+    <a routerLink="/person-detail" routerLinkActive="active">
+      <button type="button" *ngIf="!isEdit" (click)="onCancelBtnClick()">取消</button>
     </a>
   </form>
 </div>

@@ -6,8 +6,8 @@ import {CanComponentDeactivate} from '../router-guard.service';
 
 @Component({
   selector: 'app-informationform',
-  templateUrl: './informationform.component.html',
-  styleUrls: ['./informationform.component.css'],
+  templateUrl: './information-form.component.html',
+  styleUrls: ['./information-form.component.css'],
 
 })
 
@@ -56,7 +56,7 @@ export class InformationformComponent implements CanComponentDeactivate {
     }
   }
 
-  private cancel() {
+  public onCancelBtnClick() {
     this.isEdit = false;
     const person = JSON.parse(localStorage.getItem('personEntity'));
     if (!(person.uname === this.person.uname) || !(person.usex === this.person.usex) || !(person.uage === this.person.uage)
@@ -74,6 +74,6 @@ export class InformationformComponent implements CanComponentDeactivate {
   public save(a: boolean) {
     this.isEdit = true;
     localStorage.setItem('personEntity', JSON.stringify(this.person));
-    this.router.navigate(['/persondetail'], {queryParams: {'person': JSON.stringify(this.person)}});
+    this.router.navigate(['/person-detail'], {queryParams: {'person': JSON.stringify(this.person)}});
   }
 }
