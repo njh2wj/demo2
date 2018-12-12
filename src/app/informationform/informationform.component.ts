@@ -1,19 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Person} from '../person';
-import {Output, EventEmitter} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, CanDeactivate, Router} from '@angular/router';
+import {CanComponentDeactivate} from '../router-guard.service';
+
 
 @Component({
   selector: 'app-informationform',
   templateUrl: './informationform.component.html',
-  styleUrls: ['./informationform.component.css']
+  styleUrls: ['./informationform.component.css'],
+
 })
 
-export class InformationformComponent implements OnInit {
+export class InformationformComponent implements CanComponentDeactivate {
 
-  // @Input() public person: Person = new Person();
-  // @Input() public isCreate = true;
   public person: Person = new Person();
+  private isEdit = false;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.queryParams.subscribe(value => {
@@ -27,12 +28,12 @@ export class InformationformComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  public canDeactivate() {
+    return this.isEdit;
   }
 
   private usexChange(event) {
     const value = event.target.value;
-    // this.person.usex = Number(value);
   }
 
   private unameVal(event) {
@@ -56,8 +57,10 @@ export class InformationformComponent implements OnInit {
   }
 
   private cancel() {
+    this.isEdit = false;
     const person = JSON.parse(localStorage.getItem('personEntity'));
-    if (!(person.uname === this.person.uname) || !(person.usex === this.person.usex) || !(person.uage === this.person.uage) || !(person.utel === this.person.utel) || !(person.uaddress === this.person.uaddress)) {
+    if (!(person.uname === this.person.uname) || !(person.usex === this.person.usex) || !(person.uage === this.person.uage)
+      || !(person.utel === this.person.utel) || !(person.uaddress === this.person.uaddress)) {
       alert('信息已更改，未保存！');
     } else {
       alert('信息未更改！');
@@ -66,10 +69,10 @@ export class InformationformComponent implements OnInit {
   }
 
   private unsave(val) {
-    // this.send.emit(val);
   }
 
   public save(a: boolean) {
+    this.isEdit = true;
     localStorage.setItem('personEntity', JSON.stringify(this.person));
     this.router.navigate(['/persondetail'], {queryParams: {'person': JSON.stringify(this.person)}});
   }
