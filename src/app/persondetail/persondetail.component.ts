@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Person} from '../person';
 import {Router} from '@angular/router';
 
@@ -13,8 +13,6 @@ export class PersondetailComponent implements OnInit {
 
   constructor(private router: Router) {
   }
-
-  // @Output() bb = new EventEmitter();
   ngOnInit() {
     const newPerson = localStorage.getItem('personEntity');
     console.log(newPerson)
@@ -27,20 +25,12 @@ export class PersondetailComponent implements OnInit {
 
   public newPerson() {
     this.person = new Person();
-    // this.bb.emit({
-    //   person: this.person,
-    //   isCreate: true
-    // });
   }
 
   public _update() {
     this.router.navigate(['/informationform'], {
       queryParams: this.person
     });
-    // this.bb.emit({
-    //   person: this.person,
-    //   isCreate: false
-    // });
   }
 
 }
