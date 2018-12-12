@@ -4,4 +4,8 @@ export class Person{
   uage: number;
   utel: string;
   uaddress: string;
+
+  // constructor(obj?:any){
+  //   this.uname=obj.uname;
+  // }
 }
