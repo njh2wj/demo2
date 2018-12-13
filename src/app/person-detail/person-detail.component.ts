@@ -15,20 +15,18 @@ export class PersonDetailComponent implements OnInit {
   }
   ngOnInit() {
     const newPerson = localStorage.getItem('personEntity');
-    console.log(newPerson)
-    if (!newPerson) {
-      this.router.navigate(['information-form']);
-    }
     const user = JSON.parse(newPerson);
+    console.log(newPerson);
     this.person = user;
   }
 
   public onNewPersonBtnClick() {
-    this.person = new Person();
+    // this.person = new Person();
+      this.router.navigate(['information-add']);
   }
 
   public onDataUpdate() {
-    this.router.navigate(['information-form'], {
+    this.router.navigate(['information-edit'], {
       queryParams: this.person
     });
   }

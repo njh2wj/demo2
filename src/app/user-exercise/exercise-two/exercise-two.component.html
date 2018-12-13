@@ -1,0 +1,13 @@
+
+<div id="moodf">
+  <div>
+    <p>MomentMood</p>
+    <button (click)="onClickMomentMood()">PRESSS</button>
+    <div *ngFor="let momentMood of mmService.moodArr2"> {{momentMood}} </div>
+  </div>
+  <div>
+    <p>GlobalMood</p>
+    <button (click)="onClickGlobalMood()">PRESSS</button>
+    <div *ngFor="let globalMood of glmService.moodArr2"> {{globalMood}} </div>
+  </div>
+</div>

@@ -8,6 +8,11 @@ import {InformationformComponent} from './informationform/information-form.compo
 import {PersonDetailComponent} from './person-detail/person-detail.component';
 import {FormsModule} from '@angular/forms';
 import {IndexComponent} from './index/index.component';
+import { UserExerciseComponent } from './user-exercise/user-exercise.component';
+import { ExerciseOneComponent } from './user-exercise/exercise-one/exercise-one.component';
+import { ExerciseTwoComponent } from './user-exercise/exercise-two/exercise-two.component';
+import { MoneyChangePipe } from './user-exercise/exercise-one/money-change.pipe';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +20,11 @@ import {IndexComponent} from './index/index.component';
     InformationformComponent,
     PersonDetailComponent,
     IndexComponent,
+    UserExerciseComponent,
+    ExerciseOneComponent,
+    ExerciseTwoComponent,
+    MoneyChangePipe
+
   ],
   imports: [
     BrowserModule,

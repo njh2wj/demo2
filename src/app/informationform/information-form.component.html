@@ -5,7 +5,7 @@
         <td>姓名：</td>
         <td>
           <input type="text" id="uname" [(ngModel)]="person.uname" name="uname" placeholder="请输入姓名"#pername="ngModel"
-          required minlength="2" class="form-control" (blur)="unameVal($event)"pattern="^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$">
+          required minlength="2" class="form-control" (blur)="onUnameValBlur($event)"pattern="^([a-zA-Z0-9\u4e00-\u9fa5\·]{1,10})$">
         </td>
         <td>
            <div *ngIf="pername.invalid && (pername.dirty || pername.touched)"
@@ -25,14 +25,14 @@
       <tr>
         <td>性别：</td>
         <td>
-          男<input type="radio" name="usex"  value="1" (change)="usexChange($event)"checked>
-          女<input type="radio" name="usex"  value="2" (change)="usexChange($event)">
+          男<input type="radio" name="usex" [checked]="person.usex == 1"  value="1" (change)="onUsexChange($event)">
+          女<input type="radio" name="usex" [checked]="person.usex == 2" value="2" (change)="onUsexChange($event)">
       </tr>
       <tr>
         <td>年龄：</td>
         <td>
           <input type="number" id="uage" [(ngModel)]="person.uage" name="uage" placeholder="请输入年龄" #perage="ngModel"
-          required minlength="1" maxlength="3" class="form-control" (blur)="ageVal($event)" pattern="^(?:[1-9][0-9]?|1[01][0-9]|120)$">
+          required minlength="1" maxlength="3" class="form-control" (blur)="onAgeValBlur($event)" pattern="^(?:[1-9][0-9]?|1[01][0-9]|120)$">
         </td>
         <td>
           <div *ngIf="perage.invalid && (perage.dirty || perage.touched)"
@@ -91,7 +91,7 @@
       </tr>
     </table>
     <a routerLinkActive="active">
-      <button type="button" (click)="save(true)"class="btn btn-success" [disabled]="!informationForm.form.valid">保存</button>
+      <button type="button" (click)="onSaveBtnClick(true)"class="btn btn-success" [disabled]="!informationForm.form.valid">保存</button>
     </a>
     <a routerLink="/person-detail" routerLinkActive="active">
       <button type="button" *ngIf="!isEdit" (click)="onCancelBtnClick()">取消</button>

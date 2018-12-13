@@ -7,8 +7,8 @@
       </tr>
       <tr>
         <td>性别：</td>
-        <td *ngIf="person.usex===1">男</td>
-        <td *ngIf="person.usex===2">女</td>
+        <td *ngIf="person.usex==1">男</td>
+        <td *ngIf="person.usex==2">女</td>
       </tr>
       <tr>
         <td>年龄：</td>
@@ -26,7 +26,7 @@
     <a routerLinkActive="active">
       <button type="button"(click)="onDataUpdate(true)">编辑</button>
     </a>
-    <a routerLink="/information-form" routerLinkActive="active">
+    <a routerLinkActive="active">
       <button type="button" *ngIf="!isEdit" (click)="onNewPersonBtnClick()">新建</button>
     </a>
   </form>
