@@ -1,0 +1,12 @@
+p{
+    margin-left: 46em;
+    margin-top: 6em;
+}
+div{
+    width: 15em;
+    text-align: center;
+    margin-left: 45em;
+}
+.hide{
+   visibility: hidden;
+}

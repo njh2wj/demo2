@@ -1,0 +1,9 @@
+
+<p>
+  当前时间：&nbsp;{{nowTime| date: 'yyyy-MM-dd HH:mm:ss'}}
+</p>
+<div>
+  <button (click)="cService.onClickStartBtn()" #startBtn>{{cService.start}}</button>
+  <button (click)="cService.onClickStopBtn()" [class.hide]="cService.showStop">停止</button>
+  <br> <br><span>{{cService.second}}</span>
+</div>

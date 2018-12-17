@@ -1,0 +1,33 @@
+#container {
+   width: 60em;
+    height: 40em;
+    margin-left: 25em;
+    margin-top: 5em;
+}
+.map{
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+.info-title{
+    font-weight: bolder;
+    color: #fff;
+    font-size: 14px;
+    line-height: 26px;
+    padding: 0 0 0 6px;
+    background: #25A5F7
+}
+.info-content{
+    padding: 4px;
+    color: #666666;
+    line-height: 23px;
+    font: 12px Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial;
+
+}
+.info-content img{
+    float: left;
+    margin: 3px;
+}
+.amap-info-combo .keyword-input {
+    height: auto;
+}

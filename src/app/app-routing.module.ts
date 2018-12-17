@@ -7,6 +7,8 @@ import {RouterGuardService} from './router-guard.service';
 import {UserExerciseComponent} from './user-exercise/user-exercise.component';
 import {ExerciseOneComponent} from './user-exercise/exercise-one/exercise-one.component';
 import {ExerciseTwoComponent} from './user-exercise/exercise-two/exercise-two.component';
+import {ExerciseThreeComponent} from './user-exercise/exercise-three/exercise-three.component';
+import {ExerciseFourComponent} from './user-exercise/exercise-four/exercise-four.component';
 
 const appRoutes: Routes = <Routes>[
     {
@@ -46,6 +48,14 @@ const appRoutes: Routes = <Routes>[
             {
                 path: 'exercise-two',
                 component: ExerciseTwoComponent
+            },
+            {
+                path: 'exercise-three',
+                component: ExerciseThreeComponent
+            },
+            {
+                path: 'exercise-four',
+                component: ExerciseFourComponent
             }
         ],
         canActivate: [RouterGuardService],

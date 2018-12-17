@@ -8,7 +8,7 @@ export class MoneyChangePipe implements PipeTransform {
 
     transform(value: any, args?: any): any {
         // console.log(value);
-        const arr1 = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
+        const arr1 = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
         const arr2 = ['', '什', '佰'];
         const arr3 = ['角', '分'];
         const str = '元';
@@ -39,11 +39,10 @@ export class MoneyChangePipe implements PipeTransform {
         }
         if (parseInt(integerNum, 10) > 0) {
             let zeroCount = 0;
-            for (let i = 0; i <  integerNum.length; i++) {
-                let n = integerNum.substr(i, 1);
-                let p =  integerNum.length - i - 1;
-                let q = p / 4;
-                let m = p % 4;
+            for (let i = 0; i < integerNum.length; i++) {
+                const n = integerNum.substr(i, 1);
+                const p = integerNum.length - i - 1;
+                const m = p % 4;
                 if (n === '0') {
                     zeroCount++;
                 } else {
@@ -51,15 +50,15 @@ export class MoneyChangePipe implements PipeTransform {
                         chnStr += arr1[0];
                     }
                     zeroCount = 0;
-                    chnStr += arr1[parseInt(n)] + arr2[m];
+                    chnStr += arr1[parseInt(n, null)] + arr2[m];
                 }
             }
             chnStr += str;
         }
         if (decimalNum !== '') {
-            let decLen = decimalNum.length;
+            const decLen = decimalNum.length;
             for (let i = 0; i < decLen; i++) {
-                let n = decimalNum.substr(i, 1);
+                const n = decimalNum.substr(i, 1);
                 if (n !== '0') {
                     chnStr += arr1[Number(n)] + arr3[i];
                 }
@@ -72,5 +71,4 @@ export class MoneyChangePipe implements PipeTransform {
         }
         return chnStr;
     }
-
 }
