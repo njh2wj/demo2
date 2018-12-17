@@ -9,20 +9,21 @@ declare var AMapUI: any;
     styleUrls: ['./exercise-four.component.css']
 })
 export class ExerciseFourComponent implements OnInit {
-     person = JSON.parse(localStorage.getItem('personEntity'));
+    person = JSON.parse(localStorage.getItem('personEntity'));
+
     constructor() {
     }
 
     ngOnInit() {
-            const map = new AMap.Map('container', {
+        const map = new AMap.Map('container', {
             resizeEnable: true,
-            center: [123.44778 , 41.722547],
+            center: [123.44778, 41.722547],
             zoom: 15,
             isHotspot: true
         });
         const placeSearch = new AMap.PlaceSearch();  // 构造地点查询类
         const infoWindow = new AMap.AdvancedInfoWindow({});
-        map.on('hotspotclick',  (result) => {
+        map.on('hotspotclick', (result) => {
             placeSearch.getDetails(result.id, function (status, result) {
                 // console.log(JSON.stringify(result));
                 if (status === 'complete' && result.info === 'OK') {
@@ -40,18 +41,16 @@ export class ExerciseFourComponent implements OnInit {
             infoWindow.open(map, location);
         }
 
-        const createContent = (poi: any ): string =>  {  // 信息窗体内容
+        const createContent = (poi: any): string => {  // 信息窗体内容
             const s = [];
             s.push('<div class="info-title">' + poi.name + '</div><div class="info - content" > ' + '地址：' + poi.address
-        )
+            )
             ;
             s.push('电话：' + poi.tel);
             s.push('类型：' + poi.type);
             s.push('</div>');
             return s.join('</br>');
         }
-
-
 
 
         AMapUI.loadUI(['overlay/SimpleInfoWindow'], (SimpleInfoWindow) => {
@@ -82,9 +81,5 @@ export class ExerciseFourComponent implements OnInit {
                 openInfoWin();
             });
         });
-
-
     }
-
-
 }
