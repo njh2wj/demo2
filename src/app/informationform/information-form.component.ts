@@ -14,7 +14,7 @@ import {CanComponentDeactivate} from '../router-guard.service';
 export class InformationformComponent implements CanComponentDeactivate {
     private isEdit = false;
     public person: Person = new Person();
-<<<<<<< HEAD
+
 
     constructor(private route: ActivatedRoute, private router: Router) {
         this.route.queryParams.subscribe(params => {
@@ -74,7 +74,7 @@ export class InformationformComponent implements CanComponentDeactivate {
     private ageVal(event) {
         const value = event.target.value;
         const reg = /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
->>>>>>> 7ff286d7b80552d223ecb2fe9da75adaebd93640
+
         if (reg.test(value)) {
             return true;
         } else {
@@ -82,7 +82,7 @@ export class InformationformComponent implements CanComponentDeactivate {
         }
     }
 
-<<<<<<< HEAD
+
     public onAgeValBlur(event) {
         const value = event.target.value;
         const reg = /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
@@ -94,14 +94,14 @@ export class InformationformComponent implements CanComponentDeactivate {
     }
 
     public onCancelBtnClick() {
-=======
+
     public canDeactivate() {
         return this.isEdit;
     }
 
     public onCancelBtnClick() {
         this.isEdit = false;
->>>>>>> 7ff286d7b80552d223ecb2fe9da75adaebd93640
+
         const person = JSON.parse(localStorage.getItem('personEntity'));
         if (!(person.uname === this.person.uname) || !(person.usex === this.person.usex) || !(person.uage === this.person.uage)
             || !(person.utel === this.person.utel) || !(person.uaddress === this.person.uaddress)) {
@@ -109,7 +109,7 @@ export class InformationformComponent implements CanComponentDeactivate {
         } else {
             alert('信息未更改！');
         }
-<<<<<<< HEAD
+
     }
 
     public onSaveBtnClick(a: boolean) {
@@ -119,7 +119,7 @@ export class InformationformComponent implements CanComponentDeactivate {
 
     public canDeactivate() {
         return this.isEdit;
-=======
+
         this.unsave(false);
     }
 
@@ -128,6 +128,6 @@ export class InformationformComponent implements CanComponentDeactivate {
         this.isEdit = true;
         localStorage.setItem('personEntity', JSON.stringify(this.person));
         this.router.navigate(['/person-detail'], {queryParams: {'person': JSON.stringify(this.person)}});
->>>>>>> 7ff286d7b80552d223ecb2fe9da75adaebd93640
+
     }
 }
